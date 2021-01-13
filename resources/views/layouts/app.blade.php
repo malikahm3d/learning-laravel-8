@@ -14,13 +14,13 @@
     <nav class="p-6 bg-white flex justify-between">
         <ul class="flex items-center">
             <li>
-                <a href="#" class="p-6">Home</a>
+                <a href="{{ route('home') }}" class="p-6">Home</a>
             </li>
             <li>
-                <a href="#" class="p-6">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="p-6">Dashboard</a>
             </li>
             <li>
-                <a href="#" class="p-6">Post</a>
+                <a href="{{ route('posts') }}" class="p-6">Post</a>
             </li>
         </ul>
 
@@ -30,7 +30,10 @@
                     <a href="#" class="p-6">{{ auth()->user()->name }}</a>
                 </li>
                 <li>
-                    <a href="#" class="p-6">Logout</a>
+                    <form action="{{ route('logout') }}" method="post" class="inline">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
                 </li>
             @else
                 <li>

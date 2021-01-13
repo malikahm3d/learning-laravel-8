@@ -13,8 +13,18 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function loguserin()
+    public function loguserin(Request $request)
     {
-        dd('hi');
+        $validatedData = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        if(!auth()->attempt($request->only('email', 'password')))
+        {
+            return back()->with('status', 'invalid Login details');
+        }
+
+        return redirect()->route('dashboard');
     }
 }

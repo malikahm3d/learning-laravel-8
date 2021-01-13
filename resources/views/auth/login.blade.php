@@ -3,13 +3,18 @@
 @section('content')
     <div class="flex justify-center pt-6">
         <div class="w-6/12 bg-blue-300 p-6 rounded-lg">
+            @if(session()->has('status'))
+                <div class="text-red-50">
+                    {{ session('status') }}
+                </div>
+            @endif
             <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="mb-4">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Enter your Username"
-                           class="bg-gray-100 border-2 w-full p-4 rounded-lg" @error('username') is-invalid @enderror value="{{ old('username') }}">
-                    @error('username')
+                    <label for="email">email</label>
+                    <input type="text" name="email" id="email" placeholder="Enter your email"
+                           class="bg-gray-100 border-2 w-full p-4 rounded-lg" @error('email') is-invalid @enderror value="{{ old('email') }}">
+                    @error('email')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
                 </div>
