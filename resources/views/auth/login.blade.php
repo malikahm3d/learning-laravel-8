@@ -26,6 +26,12 @@
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-4">
+                    <div class="flex items-center">
+                        <label for="remember_me">Remember me</label>
+                        <input type="checkbox" name="remember_me" id="remember_me" class="ml-2">
+                    </div>
+                </div>
                 <div>
                     <button type="submit" class="rounded bg-blue-400 text-black-50 px-4 py-3 font-monospace w-1/8">
                         Log in

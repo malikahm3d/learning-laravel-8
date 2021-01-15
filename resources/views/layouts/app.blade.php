@@ -10,8 +10,8 @@
         @yield('title')
     </title>
 </head>
-<body class="bg-gray-100">
-    <nav class="p-6 bg-white flex justify-between">
+<body class="bg-gray-200">
+    <nav class="p-6 bg-gray-600 flex justify-between">
         <ul class="flex items-center">
             <li>
                 <a href="{{ route('home') }}" class="p-6">Home</a>

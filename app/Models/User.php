@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //elequant:
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+        //we could add the id (usre's) to the relatioship parameter
+        //but laravel know what to look up (in this case)
+    }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\postController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,9 @@ Route::get('/home', function(){
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard')
+    ->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
@@ -42,3 +45,5 @@ Route::post('/login', [LoginController::class, 'loguserin']);
 
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+Route::get('/posts', [postController::class, 'index'])->name('posts');
+Route::post('/posts', [postController::class, 'store'])->name('posts')->middleware('auth');

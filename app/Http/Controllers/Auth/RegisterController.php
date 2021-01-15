@@ -10,12 +10,18 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+    }
+
     public function index()
     {
         return view('auth.register');
     }
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => ['required','max:255'],
             'username' => ['required', 'max:255'],
@@ -36,13 +42,5 @@ class RegisterController extends Controller
         return redirect()->route('dashboard');
         //redirecting to /dashboard, we chain the route method so that we refrence the name not the route name
 
-//        $this->validate($request, [
-//            'name' => ['required','max:255'],
-//            'username' => ['required', 'max:255'],
-//            'email' => ['required', 'email', 'max:255'],
-//            'password' => ['required', 'confirmed']
-//            //confirmed will look for fieldName_confirmation and match them
-//        ]);
-        //dd($request->name);
     }
 }
