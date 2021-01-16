@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class postController extends Controller
@@ -9,7 +10,11 @@ class postController extends Controller
     //
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::paginate(15);
+        //dd($posts);
+        return view('posts.index', [
+            'posts' => $posts
+        ]);
     }
     public function store(Request $request)
     {
@@ -21,6 +26,8 @@ class postController extends Controller
         $request->user()->posts()->create([
             'body' => $request->body
         ]);
-        return view('dashboard');
+        //or
+        //$request->user()->posts()->create($request->only('body'));
+        return back();
     }
 }

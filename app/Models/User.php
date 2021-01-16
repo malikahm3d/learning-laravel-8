@@ -49,4 +49,9 @@ class User extends Authenticatable
         //we could add the id (usre's) to the relatioship parameter
         //but laravel know what to look up (in this case)
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
