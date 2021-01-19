@@ -35,20 +35,20 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 //->name is inhreted
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-
-Route::post('/login', [LoginController::class, 'loguserin']);
+Route::post('/login', [LoginController::class, 'loguserin'])->name('login');
 
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/posts', [postController::class, 'index'])->name('posts');
 Route::post('/posts', [postController::class, 'store'])->name('posts')->middleware('auth');
+Route::delete('/posts/{post:id}', [postController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
+
 
 Route::post('/posts/{post:id}/likes', [LikeController::class, 'store'])->name('posts.like')->middleware('auth');
 Route::delete('/posts/{post:id}/likes', [LikeController::class, 'destroy'])->name('posts.like')->middleware('auth');
-

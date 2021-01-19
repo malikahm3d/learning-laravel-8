@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+//use App\Models\User;
 class Post extends Model
 {
     use HasFactory;
@@ -15,8 +15,13 @@ class Post extends Model
 
     public function likedBy(User $user)
     {
-        return $this->likes->contains('user_id', $user->id );
+        return $this->likes->contains('user_id', $user->id);
         //check if user id is in the likes table
+    }
+
+    public function ownedBy(User $user)
+    {
+        return $this->user_id == $user->id;
     }
 
     public function user()

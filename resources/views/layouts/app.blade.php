@@ -25,7 +25,9 @@
         </ul>
 
         <ul class="flex items-center">
+
             @if(auth()->user())
+{{--    Or: @auth()--}}
                 <li>
                     <a href="#" class="p-6">{{ auth()->user()->name }}</a>
                 </li>

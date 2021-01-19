@@ -10,8 +10,9 @@ class postController extends Controller
     //
     public function index()
     {
-        $posts = Post::paginate(15);
-        //dd($posts);
+        $posts = Post::with(['user', 'likes'])->withCount('likes')->orderByDesc('likes_count')->latest()->paginate(15);
+//        $posts = Post::paginate(15);
+//        dd($posts);
         return view('posts.index', [
             'posts' => $posts
         ]);
@@ -28,6 +29,13 @@ class postController extends Controller
         ]);
         //or
         //$request->user()->posts()->create($request->only('body'));
+        return back();
+    }
+
+    public function destroy(Post $post, Request $request)
+    {
+        $this->authorize('delete', $post);
+        $post->delete();
         return back();
     }
 }
