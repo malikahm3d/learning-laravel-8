@@ -17,7 +17,7 @@ class LoginController extends Controller
     {
 
         $validatedData = $request->validate([
-            'email' => ['required', 'email'],
+            'enteredemail' => ['required', 'email'],
             'password' => ['required']
         ]);
 

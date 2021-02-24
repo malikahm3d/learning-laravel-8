@@ -17,6 +17,8 @@ class postController extends Controller
             'posts' => $posts
         ]);
     }
+
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -24,6 +26,7 @@ class postController extends Controller
         ]);
 
         //elequent:
+
         $request->user()->posts()->create([
             'body' => $request->body
         ]);

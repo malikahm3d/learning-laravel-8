@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\postController;
+use App\Http\Controllers\UserPostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,3 +53,5 @@ Route::delete('/posts/{post:id}', [postController::class, 'destroy'])->name('pos
 
 Route::post('/posts/{post:id}/likes', [LikeController::class, 'store'])->name('posts.like')->middleware('auth');
 Route::delete('/posts/{post:id}/likes', [LikeController::class, 'destroy'])->name('posts.like')->middleware('auth');
+
+Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('user.posts')->middleware('auth');

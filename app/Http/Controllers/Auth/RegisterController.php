@@ -36,8 +36,11 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+
+        User::
 //        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
         auth()->attempt($request->only('email', 'password'));
+        //log in
 
         return redirect()->route('dashboard');
         //redirecting to /dashboard, we chain the route method so that we refrence the name not the route name

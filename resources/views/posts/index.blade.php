@@ -41,6 +41,7 @@
 @section('content')
     <div class="flex justify-center pt-6">
         <div class="w-8/12 bg-gray-800 p-6 rounded-lg">
+
             <form action="{{ route('posts') }}" method="post" class="mb-4">
                 @csrf
                 @error('body')
@@ -60,10 +61,11 @@
                     </button>
                 </div>
             </form>
+
             @if($posts->count())
                 @foreach($posts as $post)
                     <div class="mb-4 bg-gray-200 rounded-lg p-1">
-                        <a href="" class="font-bold">{{ $post->user->name }}</a>
+                        <a href="{{ route('user.posts', $post->user) }}" class="font-bold">{{ $post->user->name }}</a>
                         <span class="text-sm">{{ $post->created_at->diffForHumans() }}</span>
 
                         <p class="text-black-50 mt-2 mb-2 border-secondary">{{ $post->body }}</p>
