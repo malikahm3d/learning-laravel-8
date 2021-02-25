@@ -30,7 +30,6 @@ class postController extends Controller
         $request->user()->posts()->create([
             'body' => $request->body
         ]);
-        //or
         //$request->user()->posts()->create($request->only('body'));
         return back();
     }
